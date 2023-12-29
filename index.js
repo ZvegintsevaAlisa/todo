@@ -30,7 +30,7 @@ app.post('/',async (req, res) => {
 
 // GET METHOD
 app.get("/", (req, res) => {
-    TodoTask.find({}, (err, tasks) => {
+    TodoTask.find().then( (err, tasks) => {
     res.render("todo.ejs", { todoTasks: tasks });
     });
     });
@@ -41,7 +41,7 @@ app
 .route("/edit/:id")
 .get((req, res) => {
 const id = req.params.id;
-TodoTask.find({}, (err, tasks) => {
+TodoTask.find().then( (err, tasks) => {
 res.render("todoEdit.ejs", { todoTasks: tasks, idTask: id });
 });
 })
